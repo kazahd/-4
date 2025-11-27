@@ -20,6 +20,16 @@ function App() {
     setHistory(prev => [newNick, ...prev.slice(0, 5)]);
   };
 
+  // Функция удаления текущего никнейма
+  const deleteCurrentNickname = () => {
+    setNickname('Никнейм удалён');
+  };
+
+  // Функция очистки истории
+  const clearHistory = () => {
+    setHistory([]);
+  };
+
   const copyToClipboard = (text) => {
     navigator.clipboard.writeText(text);
     alert('Скопировано: ' + text);
@@ -39,17 +49,38 @@ function App() {
       <div className="result-card">
         <div>Текущий никнейм:</div>
         <div className="nickname-text">{nickname}</div>
-        <button 
-          onClick={() => copyToClipboard(nickname)}
-          className="copy-button"
-        >
-          📋 Копировать
-        </button>
+        
+        <div className="button-group">
+          <button 
+            onClick={() => copyToClipboard(nickname)}
+            className="copy-button"
+            disabled={nickname === 'Никнейм удалён' || nickname === 'Нажми кнопку'}
+          >
+            📋 Копировать
+          </button>
+          
+          <button 
+            onClick={deleteCurrentNickname}
+            className="delete-button"
+            disabled={nickname === 'Никнейм удалён' || nickname === 'Нажми кнопку'}
+          >
+            🗑️ Удалить
+          </button>
+        </div>
       </div>
 
       {history.length > 0 && (
         <div className="history-section">
-          <h3>📜 История (последние {history.length}):</h3>
+          <div className="history-header">
+            <h3>📜 История (последние {history.length}):</h3>
+            <button 
+              onClick={clearHistory}
+              className="clear-history-button"
+            >
+              🗑️ Очистить историю
+            </button>
+          </div>
+          
           {history.map((item, index) => (
             <div key={index} className="history-item">
               <span>{item}</span>

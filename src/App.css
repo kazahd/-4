@@ -45,6 +45,16 @@
   color: #2196F3;
   margin: 10px 0;
   word-break: break-all;
+  min-height: 36px;
+}
+
+/* Группа кнопок под никнеймом */
+.button-group {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 15px;
 }
 
 .copy-button {
@@ -55,10 +65,40 @@
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s;
+  flex: 1;
+  min-width: 120px;
 }
 
-.copy-button:hover {
+.copy-button:hover:not(:disabled) {
   background-color: #1976D2;
+}
+
+.copy-button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.delete-button {
+  background-color: #f44336;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  flex: 1;
+  min-width: 120px;
+}
+
+.delete-button:hover:not(:disabled) {
+  background-color: #d32f2f;
+}
+
+.delete-button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+  opacity: 0.6;
 }
 
 .history-section {
@@ -66,6 +106,34 @@
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.history-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.history-header h3 {
+  margin: 0;
+}
+
+.clear-history-button {
+  background-color: #ff9800;
+  color: white;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.clear-history-button:hover {
+  background-color: #f57c00;
 }
 
 .history-item {
@@ -89,4 +157,15 @@
 
 .history-copy-button:hover {
   background-color: #616161;
+}
+
+@media (max-width: 480px) {
+  .button-group {
+    flex-direction: column;
+  }
+  
+  .history-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
